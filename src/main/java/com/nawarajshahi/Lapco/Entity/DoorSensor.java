@@ -1,11 +1,14 @@
 package com.nawarajshahi.Lapco.Entity;
 
-import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
+
+import java.time.LocalDateTime;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,19 +18,22 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "door_sensor", catalog = "lapco_api")
-public class DoorSensor implements java.io.Serializable {
+public class DoorSensor {
 
-	private Integer readId;
+	private Long readId;
 	private Restroom restroom;
 	private String doorId;
-	private Date doorOpenTime;
-	private Date doorCloseTime;
+	private LocalDateTime doorOpenTime;
+	private LocalDateTime doorCloseTime;
 	private String message;
 
 	public DoorSensor() {
 	}
 
-	public DoorSensor(Restroom restroom, String doorId, Date doorOpenTime, Date doorCloseTime, String message) {
+	public DoorSensor(Long readId, Restroom restroom, String doorId, LocalDateTime doorOpenTime, 
+			LocalDateTime doorCloseTime, String message) {
+		super();
+		this.readId = readId;
 		this.restroom = restroom;
 		this.doorId = doorId;
 		this.doorOpenTime = doorOpenTime;
@@ -35,15 +41,16 @@ public class DoorSensor implements java.io.Serializable {
 		this.message = message;
 	}
 
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "read_id", unique = true, nullable = false)
-	public Integer getReadId() {
+	public Long getReadId() {
 		return this.readId;
 	}
 
-	public void setReadId(Integer readId) {
+	public void setReadId(Long readId) {
 		this.readId = readId;
 	}
 
@@ -66,23 +73,23 @@ public class DoorSensor implements java.io.Serializable {
 		this.doorId = doorId;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
+	
 	@Column(name = "doorOpenTime", length = 19)
-	public Date getDoorOpenTime() {
+	public LocalDateTime getDoorOpenTime() {
 		return this.doorOpenTime;
 	}
 
-	public void setDoorOpenTime(Date doorOpenTime) {
+	public void setDoorOpenTime(LocalDateTime doorOpenTime) {
 		this.doorOpenTime = doorOpenTime;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
+	
 	@Column(name = "doorCloseTime", length = 19)
-	public Date getDoorCloseTime() {
+	public LocalDateTime getDoorCloseTime() {
 		return this.doorCloseTime;
 	}
 
-	public void setDoorCloseTime(Date doorCloseTime) {
+	public void setDoorCloseTime(LocalDateTime doorCloseTime) {
 		this.doorCloseTime = doorCloseTime;
 	}
 

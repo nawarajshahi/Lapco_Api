@@ -17,13 +17,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "restroom", catalog = "lapco_api")
-public class Restroom implements java.io.Serializable {
+public class Restroom {
 
-	private Integer restroomId;
+	private Long restroomId;
 	private Address address;
 	private String serialNo;
 	private String modelNo;
@@ -41,7 +39,7 @@ public class Restroom implements java.io.Serializable {
 	public Restroom() {
 	}
 
-	public Restroom(Integer restroomId, Address address, String serialNo, String modelNo, Date dateInstalled,
+	public Restroom(Long restroomId, Address address, String serialNo, String modelNo, Date dateInstalled,
 			Double totalCostOfProduction, Double totalCostOfInstallation, Set<CoinSensor> coinSensors,
 			Set<ElectricBill> electricBills, Set<WaterBill> waterBills, Set<DoorSensor> doorSensors,
 			Set<Solar> solars) {
@@ -64,11 +62,11 @@ public class Restroom implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "restroom_id", unique = true, nullable = false)
-	public Integer getRestroomId() {
+	public Long getRestroomId() {
 		return this.restroomId;
 	}
 
-	public void setRestroomId(Integer restroomId) {
+	public void setRestroomId(Long restroomId) {
 		this.restroomId = restroomId;
 	}
 

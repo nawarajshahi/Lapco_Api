@@ -14,9 +14,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "address", catalog = "lapco_api")
-public class Address implements java.io.Serializable {
+public class Address{
 
-	private Integer addressId;
+	private Long addressId;
 	private String street;
 	private String city;
 	private String state;
@@ -26,7 +26,10 @@ public class Address implements java.io.Serializable {
 	public Address() {
 	}
 
-	public Address(String street, String city, String state, String zipcode, Set<Restroom> restrooms) {
+	
+	public Address(Long addressId, String street, String city, String state, String zipcode, Set<Restroom> restrooms) {
+		super();
+		this.addressId = addressId;
 		this.street = street;
 		this.city = city;
 		this.state = state;
@@ -34,15 +37,16 @@ public class Address implements java.io.Serializable {
 		this.restrooms = restrooms;
 	}
 
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "address_id", unique = true, nullable = false)
-	public Integer getAddressId() {
+	public Long getAddressId() {
 		return this.addressId;
 	}
 
-	public void setAddressId(Integer addressId) {
+	public void setAddressId(Long addressId) {
 		this.addressId = addressId;
 	}
 

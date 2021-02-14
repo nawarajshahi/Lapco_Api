@@ -1,12 +1,15 @@
 package com.nawarajshahi.Lapco.Entity;
 
 
-import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
+
+import java.time.LocalDateTime;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,19 +19,22 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "coin_sensor", catalog = "lapco_api")
-public class CoinSensor implements java.io.Serializable {
+public class CoinSensor{
 
-	private Integer readId;
+	private Long readId;
 	private Restroom restroom;
 	private String sensorId;
-	private Date readDatetime;
+	private LocalDateTime readDatetime;
 	private Integer noOfQuarters;
 	private String message;
 
 	public CoinSensor() {
 	}
 
-	public CoinSensor(Restroom restroom, String sensorId, Date readDatetime, Integer noOfQuarters, String message) {
+	public CoinSensor(Long readId, Restroom restroom, String sensorId, LocalDateTime readDatetime, Integer noOfQuarters,
+			String message) {
+		super();
+		this.readId = readId;
 		this.restroom = restroom;
 		this.sensorId = sensorId;
 		this.readDatetime = readDatetime;
@@ -36,15 +42,16 @@ public class CoinSensor implements java.io.Serializable {
 		this.message = message;
 	}
 
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "read_id", unique = true, nullable = false)
-	public Integer getReadId() {
+	public Long getReadId() {
 		return this.readId;
 	}
 
-	public void setReadId(Integer readId) {
+	public void setReadId(Long readId) {
 		this.readId = readId;
 	}
 
@@ -67,13 +74,13 @@ public class CoinSensor implements java.io.Serializable {
 		this.sensorId = sensorId;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
+
 	@Column(name = "read_datetime", length = 19)
-	public Date getReadDatetime() {
+	public LocalDateTime getReadDatetime() {
 		return this.readDatetime;
 	}
 
-	public void setReadDatetime(Date readDatetime) {
+	public void setReadDatetime(LocalDateTime readDatetime) {
 		this.readDatetime = readDatetime;
 	}
 

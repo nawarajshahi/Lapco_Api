@@ -17,9 +17,9 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "electric_bill", catalog = "lapco_api")
-public class ElectricBill implements java.io.Serializable {
+public class ElectricBill {
 
-	private Integer billId;
+	private Long billId;
 	private Restroom restroom;
 	private Date billDate;
 	private Double usedQty;
@@ -28,22 +28,26 @@ public class ElectricBill implements java.io.Serializable {
 	public ElectricBill() {
 	}
 
-	public ElectricBill(Restroom restroom, Date billDate, Double usedQty, Double totalCost) {
+	
+	public ElectricBill(Long billId, Restroom restroom, Date billDate, Double usedQty, Double totalCost) {
+		super();
+		this.billId = billId;
 		this.restroom = restroom;
 		this.billDate = billDate;
 		this.usedQty = usedQty;
 		this.totalCost = totalCost;
 	}
 
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "bill_id", unique = true, nullable = false)
-	public Integer getBillId() {
+	public Long getBillId() {
 		return this.billId;
 	}
 
-	public void setBillId(Integer billId) {
+	public void setBillId(Long billId) {
 		this.billId = billId;
 	}
 

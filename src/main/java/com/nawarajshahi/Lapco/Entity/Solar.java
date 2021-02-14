@@ -19,9 +19,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "solar", catalog = "lapco_api")
-public class Solar implements java.io.Serializable {
+public class Solar {
 
-	private Integer readId;
+	private Long readId;
 	private String panelId;
 	private Double generatedQty;
 	private String message;
@@ -32,7 +32,7 @@ public class Solar implements java.io.Serializable {
 	public Solar() {
 	}
 
-	public Solar(Integer readId, String panelId, Double generatedQty, String message, Set<Restroom> restrooms) {
+	public Solar(Long readId, String panelId, Double generatedQty, String message, Set<Restroom> restrooms) {
 		super();
 		this.readId = readId;
 		this.panelId = panelId;
@@ -45,11 +45,11 @@ public class Solar implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "read_id", unique = true, nullable = false)
-	public Integer getReadId() {
+	public Long getReadId() {
 		return this.readId;
 	}
 
-	public void setReadId(Integer readId) {
+	public void setReadId(Long readId) {
 		this.readId = readId;
 	}
 
@@ -82,8 +82,8 @@ public class Solar implements java.io.Serializable {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "solar_restroom", 
-			joinColumns = @JoinColumn(name = "read_id", referencedColumnName = "readId"), 
-			inverseJoinColumns = @JoinColumn(name = "restroom_id", referencedColumnName = "restroomId"))
+			joinColumns = @JoinColumn(name = "read_id", referencedColumnName = "read_id"), 
+			inverseJoinColumns = @JoinColumn(name = "restroom_id", referencedColumnName = "restroom_id"))
 	public Set<Restroom> getRestrooms() {
 		return restrooms;
 	}
