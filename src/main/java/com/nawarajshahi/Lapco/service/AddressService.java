@@ -29,5 +29,12 @@ public class AddressService
 			throw e;
 		}
 	}
+	
+	//get all Addresses method
+	public Iterable<Address> getAddresses(){
+		return repo.findAll();
+	}
+	
+	
 
 }
