@@ -35,6 +35,48 @@ public class AddressService
 		return repo.findAll();
 	}
 	
+	//create Address method
+	public Address createAddress(Address address) {
+		return repo.save(address);
+	}
+	
 	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

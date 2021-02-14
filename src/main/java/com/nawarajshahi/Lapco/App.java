@@ -7,10 +7,9 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 
-@ComponentScan("com.mvnProject.inventoryManagement")
+@ComponentScan("com.nawarajshahi.Lapco")
 @SpringBootApplication
 @EnableAutoConfiguration
-
 public class App 
 {
     public static void main( String[] args )
