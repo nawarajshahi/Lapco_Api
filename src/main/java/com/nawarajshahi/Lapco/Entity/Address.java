@@ -25,12 +25,12 @@ public class Address{
 	private String city;
 	private String state;
 	private String zipcode;
+
 	@JsonIgnore
 	private Set<Restroom> restrooms = new HashSet<Restroom>(0);
 
 	public Address() {
 	}
-
 	
 	public Address(Long addressId, String street, String city, String state, String zipcode, Set<Restroom> restrooms) {
 		super();

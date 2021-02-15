@@ -15,11 +15,11 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @Configuration
 public class SwaggerConfiguration {
 	@Bean
-    public Docket productApi() {
+    public Docket lapcoSwagger() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.nawarajshahi.Lapco"))
-                .paths(regex("/rest.*"))
+                .paths(regex("/.*"))
                 .build()
                 .apiInfo(metaInfo());
     }
@@ -28,12 +28,14 @@ public class SwaggerConfiguration {
 
         ApiInfo apiInfo = new ApiInfo(
                 "Lapco Technologies",
-                "Lapco Technologies API documentation",
+                "API documentation for Lapco Technologies entities." +
+                        "Entities include: Address, Coin Sensor, Door Sensor, " +
+                        "Restroom Detail, Water Bill, Electric Bill, and Solar",
                 "V1.0",
                 "Terms of Service",
-                new Contact("Nawaraj Shahi", null, "nshahi@student.fitchburgstate.edu"),
+                "Nawaraj Shahi",
                 "Apache License Version 2.0",
-                "https://www.apache.org/licesen.html"
+                "https://www.apache.org/licenses/LICENSE-2.0"
         );
 
         return apiInfo;
