@@ -1,5 +1,7 @@
 package com.nawarajshahi.Lapco.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -30,22 +32,28 @@ public class Restroom {
 	private Date dateInstalled;
 	private Double totalCostOfProduction;
 	private Double totalCostOfInstallation;
+
+	@JsonIgnore
 	private Set<CoinSensor> coinSensors = new HashSet<CoinSensor>(0);
+
+	@JsonIgnore
 	private Set<ElectricBill> electricBills = new HashSet<ElectricBill>(0);
-	
+
+	@JsonIgnore
 	private Set<WaterBill> waterBills = new HashSet<WaterBill>(0);
+
+	@JsonIgnore
 	private Set<DoorSensor> doorSensors = new HashSet<DoorSensor>(0);
-	
+
+	@JsonIgnore
 	private Set<Solar> solars = new HashSet<Solar>(0);
 
 	public Restroom() {
 	}
 
-	public Restroom(Long restroomId, Address address, String serialNo, String modelNo, Date dateInstalled,
-			Double totalCostOfProduction, Double totalCostOfInstallation, Set<CoinSensor> coinSensors,
-			Set<ElectricBill> electricBills, Set<WaterBill> waterBills, Set<DoorSensor> doorSensors,
-			Set<Solar> solars) {
-		super();
+	public Restroom(Long restroomId, Address address, String serialNo, String modelNo,
+					Date dateInstalled, Double totalCostOfProduction,
+					Double totalCostOfInstallation) {
 		this.restroomId = restroomId;
 		this.address = address;
 		this.serialNo = serialNo;
@@ -53,13 +61,7 @@ public class Restroom {
 		this.dateInstalled = dateInstalled;
 		this.totalCostOfProduction = totalCostOfProduction;
 		this.totalCostOfInstallation = totalCostOfInstallation;
-		this.coinSensors = coinSensors;
-		this.electricBills = electricBills;
-		this.waterBills = waterBills;
-		this.doorSensors = doorSensors;
-		this.solars = solars;
 	}
-
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
