@@ -15,7 +15,8 @@ public class AddressService
 {
 	
 	private static final Logger logger = LogManager.getLogger(AddressService.class);
-	
+
+	//access AddressRepository for CRUD operations on Address
 	@Autowired
 	private AddressRepository repo; 
 	
@@ -35,7 +36,7 @@ public class AddressService
 		return repo.findAll();
 	}
 	
-	//create Address method
+	//create a Address
 	public Address createAddress(Address address) {
 		return repo.save(address);
 	}

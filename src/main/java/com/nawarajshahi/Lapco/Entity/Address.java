@@ -1,6 +1,8 @@
 package com.nawarajshahi.Lapco.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -23,6 +25,7 @@ public class Address{
 	private String city;
 	private String state;
 	private String zipcode;
+	@JsonIgnore
 	private Set<Restroom> restrooms = new HashSet<Restroom>(0);
 
 	public Address() {
@@ -96,5 +99,6 @@ public class Address{
 	public void setRestrooms(Set<Restroom> restrooms) {
 		this.restrooms = restrooms;
 	}
+
 
 }
