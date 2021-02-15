@@ -63,6 +63,7 @@ public class Restroom {
 		this.totalCostOfInstallation = totalCostOfInstallation;
 	}
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "restroom_id", unique = true, nullable = false)
