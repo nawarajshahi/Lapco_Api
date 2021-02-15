@@ -28,8 +28,8 @@ public class SwaggerConfiguration {
 
         ApiInfo apiInfo = new ApiInfo(
                 "Lapco Technologies",
-                "API documentation for Lapco Technologies entities." +
-                        "Entities include: Address, Coin Sensor, Door Sensor, " +
+                "API documentation for Lapco Technologies entities. " +
+                        "Entities include: \nAddress, Coin Sensor, Door Sensor, " +
                         "Restroom Detail, Water Bill, Electric Bill, and Solar",
                 "V1.0",
                 "Terms of Service",
