@@ -17,7 +17,7 @@ public class RestroomService {
     private RestroomRepository repo;
 
     @Autowired
-    private AddressRepository addRepo;
+    private AddressService addressService;
 
     //get restroom detail with restroom_id
     public Restroom getRestroomDetailById(Long restroom_id) throws Exception {
@@ -38,12 +38,13 @@ public class RestroomService {
 
     //create a restroom
     public Restroom createRestroom(Restroom restroom) {
+        restroom.setAddress(addressService.createAddress(restroom.getAddress()));
         logger.info("Successfully created restroom");
         return repo.save(restroom);
     }
 
     //update a restroom detail with restroom_id
-    public Restroom updateResroom(Restroom restroom, Long restroom_id) throws Exception{
+    public Restroom updateRestroom(Restroom restroom, Long restroom_id) throws Exception{
         try{
             Restroom oldRestroom = repo.findOne(restroom_id);
             oldRestroom.setAddress(restroom.getAddress());
