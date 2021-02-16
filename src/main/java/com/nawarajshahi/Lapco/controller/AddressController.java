@@ -20,10 +20,10 @@ public class AddressController {
     private AddressService addService;
 
     //access an address with address id
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Object> getAddress(@PathVariable Long id){
+    @RequestMapping(value = "/{add_id}", method = RequestMethod.GET)
+    public ResponseEntity<Object> getAddress(@PathVariable Long add_id){
         try{
-            return new ResponseEntity<>(addService.getAddressById(id), HttpStatus.OK);
+            return new ResponseEntity<>(addService.getAddressById(add_id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
@@ -41,4 +41,52 @@ public class AddressController {
         return new ResponseEntity<>(addService.createAddress(address), HttpStatus.CREATED);
     }
 
+    //update an address by address id
+    @RequestMapping(value ="/{add_id}", method = RequestMethod.PUT)
+    public ResponseEntity<Object> updateAddress(@RequestBody Address address, @PathVariable Long add_id){
+        try{
+            return new ResponseEntity<>(addService.updateAddresss(address, add_id), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    //delete a address by address id
+    @RequestMapping(value = "/{add_id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Object> deleteAddress(@PathVariable Long add_id){
+        try{
+            addService.deleteAddress(add_id);
+            return new ResponseEntity<>("Successfully deleted the address", HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

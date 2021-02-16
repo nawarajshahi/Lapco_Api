@@ -47,13 +47,24 @@ public class AddressService
 			Address oldAddress = repo.findOne(address_id);
 			oldAddress.setStreet(address.getStreet());
 			oldAddress.setCity(address.getCity());
-			oldAddress.setStreet(address.getState());
+			oldAddress.setState(address.getState());
 			oldAddress.setZipcode(address.getZipcode());
 			logger.info("Successfully updated the address with id " + address_id);
 			return repo.save(oldAddress);
 		}catch(Exception e){
 			logger.error("Exception occurred while trying to update the address with id " + address_id, e);
 			throw new Exception("Unable to update the address.");
+		}
+	}
+
+	//delete a address
+	public void deleteAddress(Long add_id) throws Exception{
+		try{
+			repo.delete(add_id);
+			logger.info("Successfully deleted the address with id: " + add_id);
+		}catch(Exception e){
+			logger.error("Exception occurred while trying to delete the address with id: " + add_id, e);
+			throw e;
 		}
 	}
 
