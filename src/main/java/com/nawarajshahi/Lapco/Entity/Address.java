@@ -29,17 +29,17 @@ public class Address{
 
 	public Address() {
 	}
-	
-	public Address(Long addressId, String street, String city, String state, String zipcode, Set<Restroom> restrooms) {
-		super();
+
+	public Address(Long addressId) {
 		this.addressId = addressId;
+	}
+
+	public Address(String street, String city, String state, String zipcode) {
 		this.street = street;
 		this.city = city;
 		this.state = state;
 		this.zipcode = zipcode;
-		this.restrooms = restrooms;
 	}
-
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

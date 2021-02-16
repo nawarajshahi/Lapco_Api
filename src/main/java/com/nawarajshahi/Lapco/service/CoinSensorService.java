@@ -37,34 +37,5 @@ public class CoinSensorService {
         return coinRepo.save(coinSensor);
     }
 
-    //update coin-read instance for coin CoinSensor
-    public CoinSensor updateCoinRead(CoinSensor coinSensor, Long read_id) throws Exception{
-        try{
-            CoinSensor oldCoinSensor = coinRepo.findOne(read_id);
-            oldCoinSensor.setRestroom(coinSensor.getRestroom());
-            oldCoinSensor.setSensorId(coinSensor.getSensorId());
-            oldCoinSensor.setMessage(coinSensor.getMessage());
-            oldCoinSensor.setReadDatetime(LocalDateTime.now());
-            oldCoinSensor.setNoOfQuarters(1);
-            logger.info("Successfully updated the Coin_read transaction " + read_id);
-            return coinRepo.save(oldCoinSensor);
-        }catch (Exception e){
-            logger.error("Exception occurred while trying to update the coin read with id " + read_id, e);
-            throw new Exception("Unable to update the coin read transaction.");
-        }
-    }
-
-    //delete coin_read transaction
-    public void deleteCoinRead(Long read_id) throws Exception{
-        try{
-            coinRepo.delete(read_id);
-            logger.info("Successfully deleted the coin read with id: " + read_id);
-        }catch (Exception e){
-            logger.error("Exception occurred while updating the coin read with id " + read_id, e);
-            throw new Exception("Unable to delete the coin-read with id " + read_id);
-        }
-    }
-
-
 
 }

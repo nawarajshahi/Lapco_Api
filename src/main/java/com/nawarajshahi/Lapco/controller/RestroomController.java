@@ -50,7 +50,7 @@ public class RestroomController {
     @RequestMapping(value = "/{rest_id", method = RequestMethod.PUT)
     public ResponseEntity<Object> updateRestroomById(@RequestBody Restroom restroom, @PathVariable Long rest_id){
         try{
-            return new ResponseEntity<>(restroomService.updateResroom(restroom, rest_id), HttpStatus.OK);
+            return new ResponseEntity<>(restroomService.updateRestroom(restroom, rest_id), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
