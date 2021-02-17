@@ -21,7 +21,7 @@ public class RestroomController {
     private RestroomService restroomService;
 
     //get restroom information by restroom_id
-    @RequestMapping(value ="/{rest_id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{rest_id}", method = RequestMethod.GET)
     public ResponseEntity<Object> getRestroomDetailById(@PathVariable Long rest_id){
         try{
             return new ResponseEntity<>(restroomService.getRestroomDetailById(rest_id), HttpStatus.OK);
@@ -37,7 +37,7 @@ public class RestroomController {
     }
 
     //create new restroom
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Object> createNewRestroom(@RequestBody Restroom restroom) throws Exception{
         try{
             return new ResponseEntity<>(restroomService.createRestroom(restroom), HttpStatus.CREATED);
@@ -47,7 +47,7 @@ public class RestroomController {
     }
 
     //update restroom by restroom_id
-    @RequestMapping(value = "/{rest_id", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{rest_id}", method = RequestMethod.PUT)
     public ResponseEntity<Object> updateRestroomById(@RequestBody Restroom restroom, @PathVariable Long rest_id){
         try{
             return new ResponseEntity<>(restroomService.updateRestroom(restroom, rest_id), HttpStatus.OK);
