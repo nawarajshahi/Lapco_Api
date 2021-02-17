@@ -16,7 +16,7 @@ public class RestroomController {
     private RestroomService restroomService;
 
     //get restroom information by restroom_id
-    @RequestMapping(value ="/{rest_id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{rest_id}", method = RequestMethod.GET)
     public ResponseEntity<Object> getRestroomDetailById(@PathVariable Long rest_id){
         try{
             return new ResponseEntity<>(restroomService.getRestroomDetailById(rest_id), HttpStatus.OK);

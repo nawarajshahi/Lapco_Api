@@ -37,6 +37,7 @@ public class RestroomService {
 
     //create a restroom
     public Restroom createRestroom(Restroom restroom) {
+
         restroom.setAddress(addressService.createAddress(restroom.getAddress()));
         logger.info("Successfully created restroom");
         return repo.save(restroom);
