@@ -1,8 +1,7 @@
 package com.nawarajshahi.Lapco.service;
 
-import com.nawarajshahi.Lapco.Entity.Address;
+
 import com.nawarajshahi.Lapco.Entity.Restroom;
-import com.nawarajshahi.Lapco.repository.AddressRepository;
 import com.nawarajshahi.Lapco.repository.RestroomRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -67,7 +66,7 @@ public class RestroomService {
             logger.info("Successfully deleted the restroom with id " + restoom_id);
             repo.delete(restoom_id);
         } catch (Exception e){
-            logger.error("Exception occured while trying to delete the restroom with id: " + restoom_id);
+            logger.error("Exception occurred while trying to delete the restroom with id: " + restoom_id);
             throw e;
         }
     }
