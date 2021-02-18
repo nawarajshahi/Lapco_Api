@@ -1,5 +1,6 @@
 package com.nawarajshahi.Lapco.controller;
 
+import com.nawarajshahi.Lapco.Entity.CoinSensor;
 import com.nawarajshahi.Lapco.service.CoinSensorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,5 +25,11 @@ public class CoinSensorController {
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    //create new coin_read
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Object> createCoinRead(CoinSensor coinSensor){
+        return new ResponseEntity<>(coinService.createCoinRead(coinSensor), HttpStatus.CREATED);
     }
 }
