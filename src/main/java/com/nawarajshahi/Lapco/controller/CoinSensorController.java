@@ -32,4 +32,7 @@ public class CoinSensorController {
     public ResponseEntity<Object> createCoinRead(CoinSensor coinSensor){
         return new ResponseEntity<>(coinService.createCoinRead(coinSensor), HttpStatus.CREATED);
     }
+
+    //read all coin_reads from the coinSensor
+
 }
