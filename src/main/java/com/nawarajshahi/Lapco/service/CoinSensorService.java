@@ -29,11 +29,13 @@ public class CoinSensorService {
 
     //access all the coinSensor details
     public Iterable<CoinSensor> getAllCoinSensorDetails(){
+        logger.info("Returned all the coinSensor details");
         return coinRepo.findAll();
     }
 
     //create coin-read
     public CoinSensor createCoinRead(CoinSensor coinSensor){
+        
         return coinRepo.save(coinSensor);
     }
 

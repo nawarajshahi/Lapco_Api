@@ -31,11 +31,14 @@ public class AddressService
 		try{
 			if(!doesAddressExist(address)){
 				//creates and returns this new address
+				logger.info("Did not find existing address with same values. Created new address instead");
 				return repo.save(address);
 			}
 			//returns the existing address
+			logger.info("Returning existing address with id: " + existingAddressId);
 			return repo.findOne(existingAddressId);
 		}catch (Exception e){
+			logger.error("Exception occurred while creating address");
 			throw e;
 		}
 	}
