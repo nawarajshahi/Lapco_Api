@@ -2,6 +2,7 @@ package com.nawarajshahi.Lapco.service;
 
 import com.nawarajshahi.Lapco.Entity.ElectricBill;
 import com.nawarajshahi.Lapco.Entity.Restroom;
+
 import com.nawarajshahi.Lapco.repository.ElectricBillRepository;
 import com.nawarajshahi.Lapco.repository.RestroomRepository;
 import org.apache.logging.log4j.LogManager;
@@ -9,6 +10,8 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -51,6 +54,31 @@ public class ElectricBillService {
             return null;
         }catch (Exception e){
             logger.error("Error creating water bill read for given restroom.");
+            throw e;
+        }
+    }
+
+    //read all electric bills for given restroom_id
+    public List<ElectricBill> getElectricBillsByRestroomId(Long rest_id){
+        //check to see if restroom exists first
+        Restroom restroom = restRepo.findOne(rest_id);
+        try{
+            if(restroom !=null){
+                logger.info("Restroom exists, extracting water bills with rest_id: " + rest_id);
+                List<ElectricBill> electricBills = new ArrayList<>();
+                Iterable<ElectricBill> electricBillIterable = electricRepo.findAll();
+                for (ElectricBill electricBill : electricBillIterable) {
+                    if(electricBill.getRestroom().getRestroomId() ==rest_id){
+                        electricBills.add(electricBill);
+                    }
+                }
+                logger.info("Returning all water bills with rest_id: " + rest_id);
+                return electricBills;
+            }
+            logger.error("Restroom doesn't exist, returning null");
+            return null;
+        }catch (Exception e){
+            logger.error("Exception occurred while reading electric bills");
             throw e;
         }
     }
