@@ -48,7 +48,7 @@ public class ElectricBillService {
                 electricBill.setTotalCost(Math.round(usedQty*costPerkWh*100.0)/100.0);
                 logger.info("Completed setting all water bill details.");
 
-                return electricBill;
+                return electricRepo.save(electricBill);
             }
             logger.error("Restroom doesn't exist, returning null value.");
             return null;
