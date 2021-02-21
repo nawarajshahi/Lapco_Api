@@ -1,6 +1,8 @@
 package com.nawarajshahi.Lapco.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,10 +22,14 @@ import javax.persistence.TemporalType;
 @Table(name = "water_bill", catalog = "lapco_api")
 public class WaterBill {
 
+	@JsonIgnore
 	private Long billId;
+	@JsonIgnore
 	private Restroom restroom;
 	private Date billDate;
+	@JsonIgnore
 	private Double usedQty;
+	@JsonIgnore
 	private Double totalCost;
 
 	public WaterBill() {
