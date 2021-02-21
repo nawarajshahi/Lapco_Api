@@ -26,33 +26,48 @@ public class DoorSensorService {
     public DoorSensor createDoorRead(Long rest_id, DoorSensor doorSensor){
         //get the restroom with given rest_id
         Restroom restroom = restRepo.findOne(rest_id);
-            //check to see if the restroom exists
+        try{
             if(restroom != null){
                 logger.info("Restroom exists, and setting restroom details to the door sensor.");
                 doorSensor.setRestroom(restroom);
                 doorSensor.setDoorOpenTime(LocalDateTime.now());
                 doorSensor.setDoorCloseTime(LocalDateTime.now().plusSeconds(8)); //door closes after 8 seconds.
                 doorSensor.setMessage("Door opened & closed.");
+                logger.info("Created door sensor read details.");
                 return doorRepo.save(doorSensor);
             }
             logger.error("restroom does not exist, returning null");
             return null;
+        }catch (Exception e){
+            logger.error("Error occurred while creating door read details.");
+            throw e;
+        }
     }
 
     //read all the door sensor data for given restroom_id
     public List<DoorSensor> getDoorReadsByRestroomId(Long rest_id){
         //first obtain the restroom with given rest_id
         Restroom restroom = restRepo.findOne(rest_id);
+        try{
+            if(restroom !=null){
+                logger.info("Restroom exits, returning door read details with restroom id: " + rest_id);
+                List<DoorSensor> doorSensors = new ArrayList<>();
 
-        List<DoorSensor> doorSensors = new ArrayList<>();
-
-        Iterable<DoorSensor> doorSensorIterable = doorRepo.findAll();
-        for(DoorSensor sensor: doorSensorIterable){
-            if(sensor.getRestroom().getRestroomId()== restroom.getRestroomId()){
-                doorSensors.add(sensor); //add only if restroom_id matches
+                Iterable<DoorSensor> doorSensorIterable = doorRepo.findAll();
+                for(DoorSensor sensor: doorSensorIterable){
+                    if(sensor.getRestroom().getRestroomId()== restroom.getRestroomId()){
+                        doorSensors.add(sensor); //add only if restroom_id matches
+                    }
+                }
+                logger.info("Successfully retrieved door read details with restroom id: " + rest_id);
+                return doorSensors;
             }
+            logger.error("Restroom doesn't exist, returning null");
+            return null;
+        }catch (Exception e){
+            logger.error("Error retrieving door read details, please make sure details are correct.");
+            throw e;
         }
-        return doorSensors;
     }
 
 }

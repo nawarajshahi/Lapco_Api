@@ -1,6 +1,8 @@
 package com.nawarajshahi.Lapco.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,11 +22,16 @@ import javax.persistence.Table;
 @Table(name = "door_sensor", catalog = "lapco_api")
 public class DoorSensor {
 
+	@JsonIgnore
 	private Long readId;
+	@JsonIgnore
 	private Restroom restroom;
 	private String doorId;
+	@JsonIgnore
 	private LocalDateTime doorOpenTime;
+	@JsonIgnore
 	private LocalDateTime doorCloseTime;
+	@JsonIgnore
 	private String message;
 
 	public DoorSensor() {
