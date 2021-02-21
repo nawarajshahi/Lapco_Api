@@ -104,4 +104,15 @@ public class DoorSensor {
 		this.message = message;
 	}
 
+	@Override
+	public String toString() {
+		return "DoorSensor{" +
+				"readId=" + readId +
+				", restroom=" + restroom +
+				", doorId='" + doorId + '\'' +
+				", doorOpenTime=" + doorOpenTime +
+				", doorCloseTime=" + doorCloseTime +
+				", message='" + message + '\'' +
+				'}';
+	}
 }
