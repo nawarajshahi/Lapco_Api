@@ -10,11 +10,12 @@ import org.springframework.stereotype.Service;
 import com.nawarajshahi.Lapco.Entity.Address;
 import com.nawarajshahi.Lapco.repository.AddressRepository;
 
-import java.util.Set;
+import java.io.Serializable;
+
 
 
 @Service
-public class AddressService 
+public class AddressService implements Serializable
 {
 	
 	private static final Logger logger = LogManager.getLogger(AddressService.class);

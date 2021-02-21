@@ -6,20 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "restroom", catalog = "lapco_api")
@@ -63,7 +50,6 @@ public class Restroom implements Serializable {
 		this.totalCostOfInstallation = totalCostOfInstallation;
 	}
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "restroom_id", unique = true, nullable = false)
@@ -75,7 +61,8 @@ public class Restroom implements Serializable {
 		this.restroomId = restroomId;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH, CascadeType.DETACH,
+			CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "address_id")
 	public Address getAddress() {
 		return this.address;

@@ -3,6 +3,7 @@ package com.nawarajshahi.Lapco.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "address", catalog = "lapco_api")
-public class Address{
+public class Address implements Serializable {
 
 	private Long addressId;
 	private String street;

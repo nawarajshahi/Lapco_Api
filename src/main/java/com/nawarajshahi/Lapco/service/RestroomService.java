@@ -8,8 +8,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
+
 @Service
-public class RestroomService {
+public class RestroomService implements Serializable {
     private static final Logger logger = LogManager.getLogger(RestroomService.class);
 
     @Autowired
