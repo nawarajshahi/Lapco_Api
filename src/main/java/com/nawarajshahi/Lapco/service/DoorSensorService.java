@@ -33,8 +33,8 @@ public class DoorSensorService {
                 logger.info("Restroom exists, and setting restroom details to the door sensor.");
                 doorSensor.setRestroom(restroom);
                 doorSensor.setDoorOpenTime(LocalDateTime.now());
-                doorSensor.setDoorCloseTime(LocalDateTime.now().plusSeconds(5));
-                doorSensor.setMessage("Door opened and closed.");
+                doorSensor.setDoorCloseTime(LocalDateTime.now().plusSeconds(8));
+                doorSensor.setMessage("Door opened & closed.");
                 return doorRepo.save(doorSensor);
             }
             logger.error("restroom does not exist, returning null");
@@ -51,7 +51,7 @@ public class DoorSensorService {
         Iterable<DoorSensor> doorSensorIterable = doorRepo.findAll();
         for(DoorSensor sensor: doorSensorIterable){
             if(sensor.getRestroom().getRestroomId()== restroom.getRestroomId()){
-                doorSensors.add(sensor);
+                doorSensors.add(sensor); //add only if restroom_id matches
             }
         }
         return doorSensors;
