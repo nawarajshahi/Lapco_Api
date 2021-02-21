@@ -61,7 +61,7 @@ public class WaterBillService {
         Restroom restroom = restRepo.findOne(rest_id);
         try{
             if(restroom !=null){
-                logger.info("Restroom exists, adding all the water bills associated with restroom id: " + rest_id);
+                logger.info("Restroom exists, extracting water bills associated with restroom id: " + rest_id);
                 List<WaterBill> waterBills = new ArrayList<>();
                 Iterable<WaterBill> waterBillIterable = waterRepo.findAll();
                 for (WaterBill waterBill : waterBillIterable) {
@@ -69,7 +69,7 @@ public class WaterBillService {
                         waterBills.add(waterBill);
                     }
                 }
-                logger.info("Returning all the water bills associated with restroom id: " + rest_id);
+                logger.info("Returning all the water bills  with restroom id: " + rest_id);
                 return waterBills;
             }
             logger.error("Could not find restroom, returning null value");
