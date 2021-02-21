@@ -12,11 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "coin_sensor", catalog = "lapco_api")
-public class CoinSensor{
+public class CoinSensor implements Serializable {
 
 	private Long readId;
 	private Restroom restroom;
@@ -28,21 +29,13 @@ public class CoinSensor{
 	public CoinSensor() {
 	}
 
-	public CoinSensor(Long readId, Restroom restroom, String sensorId, LocalDateTime readDatetime, Integer noOfQuarters,
-			String message) {
-		super();
-		this.readId = readId;
-		this.restroom = restroom;
+	public CoinSensor(String sensorId, String message) {
 		this.sensorId = sensorId;
-		this.readDatetime = readDatetime;
-		this.noOfQuarters = noOfQuarters;
 		this.message = message;
 	}
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-
 	@Column(name = "read_id", unique = true, nullable = false)
 	public Long getReadId() {
 		return this.readId;
@@ -99,4 +92,15 @@ public class CoinSensor{
 		this.message = message;
 	}
 
+	@Override
+	public String toString() {
+		return "CoinSensor{" +
+				"readId=" + readId +
+				", restroom=" + restroom +
+				", sensorId='" + sensorId + '\'' +
+				", readDatetime=" + readDatetime +
+				", noOfQuarters=" + noOfQuarters +
+				", message='" + message + '\'' +
+				'}';
+	}
 }

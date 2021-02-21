@@ -12,11 +12,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "/coinSensor")
+@RequestMapping(value = "/restroom/{rest_id}/CoinSensor")
 public class CoinSensorController {
+
 
     @Autowired
     private CoinSensorService coinService;
+
+    /*
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<?> getCoinSensorDetailsByRestroomId(@PathVariable Long rest_id){
+        try{
+            return new ResponseEntity<>(coinService.getSensorsByRestroomId(rest_id), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+     */
+
+
+
+    /*
 
     //get coin_read by read_id
     @RequestMapping(value = "/{read_id}", method = RequestMethod.GET)
@@ -35,5 +52,9 @@ public class CoinSensorController {
     }
 
     //read all coin_reads from the coinSensor
+
+
+
+     */
 
 }
