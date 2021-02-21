@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.Random;
 
@@ -19,6 +20,8 @@ public class WaterBillService {
 
     //water is read in gallons and hence cost is dollar/gallon
     private final double costPerGallon = 0.4264/100; //cost per 100 gallon is 0.4264
+
+
 
     @Autowired
     private WaterBillRepository waterRepo;
@@ -37,8 +40,8 @@ public class WaterBillService {
                 double usedQty = lowerLimit + new Random().nextDouble() * (upperLimit - lowerLimit);
                 waterBill.setRestroom(restroom);
                 waterBill.setBillDate(waterBill.getBillDate());
-                waterBill.setUsedQty(usedQty);
-                waterBill.setTotalCost(usedQty*costPerGallon);
+                waterBill.setUsedQty((double) Math.round(usedQty*100.0)/100.0);
+                waterBill.setTotalCost((double) Math.round(usedQty*costPerGallon *100.0)/100.0);
                 logger.info("Finished setting all the water bill details.");
 
                 return waterRepo.save(waterBill);
