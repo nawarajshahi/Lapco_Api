@@ -31,7 +31,7 @@ public class DoorSensorService {
                 logger.info("Restroom exists, and setting restroom details to the door sensor.");
                 doorSensor.setRestroom(restroom);
                 doorSensor.setDoorOpenTime(LocalDateTime.now());
-                doorSensor.setDoorCloseTime(LocalDateTime.now().plusSeconds(8));
+                doorSensor.setDoorCloseTime(LocalDateTime.now().plusSeconds(8)); //door closes after 8 seconds.
                 doorSensor.setMessage("Door opened & closed.");
                 return doorRepo.save(doorSensor);
             }
@@ -54,14 +54,5 @@ public class DoorSensorService {
         }
         return doorSensors;
     }
-
-
-
-
-
-
-
-
-
 
 }
