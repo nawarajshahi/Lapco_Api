@@ -51,7 +51,6 @@ public class DoorSensor {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-
 	@Column(name = "read_id", unique = true, nullable = false)
 	public Long getReadId() {
 		return this.readId;
