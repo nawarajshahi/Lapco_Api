@@ -169,4 +169,14 @@ public class Restroom implements Serializable {
 		this.doorSensors = doorSensors;
 	}
 
+	@Override
+	public String toString() {
+		return "restroomId: " + restroomId +
+				", address: " + address.toString() +
+				", serialNo: " + serialNo +
+				", modelNo: " + modelNo +
+				", dateInstalled: " + dateInstalled +
+				", totalCostOfProduction: $" + totalCostOfProduction +
+				", totalCostOfInstallation: $" + totalCostOfInstallation;
+	}
 }
