@@ -20,8 +20,6 @@ public class DoorSensorService {
 
     @Autowired private DoorSensorRepository doorRepo;
 
-    @Autowired private RestroomService restService;
-
     @Autowired private RestroomRepository restRepo;
 
     //create door sensor read for specific restroom
