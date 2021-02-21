@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -49,6 +51,31 @@ public class WaterBillService {
             throw new Exception("Error creating water bill.");
         }catch (Exception e){
             logger.error("Unable to create water bill");
+            throw e;
+        }
+    }
+
+    //read water bills for given restroom id
+    public List<WaterBill> getWaterBillsByRestroomId(Long rest_id){
+        //get the restroom with rest_id
+        Restroom restroom = restRepo.findOne(rest_id);
+        try{
+            if(restroom !=null){
+                logger.info("Restroom exists, adding all the water bills associated with restroom id: " + rest_id);
+                List<WaterBill> waterBills = new ArrayList<>();
+                Iterable<WaterBill> waterBillIterable = waterRepo.findAll();
+                for (WaterBill waterBill : waterBillIterable) {
+                    if(waterBill.getRestroom().getRestroomId() == rest_id){
+                        waterBills.add(waterBill);
+                    }
+                }
+                logger.info("Returning all the water bills associated with restroom id: " + rest_id);
+                return waterBills;
+            }
+            logger.error("Could not find restroom, returning null value");
+            return null;
+        }catch (Exception e){
+            logger.error("Error accessing water bills for given restroom");
             throw e;
         }
     }
