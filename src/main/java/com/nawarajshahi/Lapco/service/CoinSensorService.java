@@ -24,56 +24,20 @@ public class CoinSensorService implements Serializable {
     private CoinSensorRepository coinRepo;
 
     @Autowired
-    private RestroomRepository restroomRepository;
+    private RestroomRepository restRepo;
 
-    public List<CoinSensor> getSensorsByRestroomId(Long rest_id){
-        //find the restroom with rest_id provided
-        Restroom restroom = restroomRepository.findOne(rest_id);
-        try{
-            if(!restroom.equals(null)){
-                List<CoinSensor> coinSensors = new ArrayList<>();
-                Iterable<CoinSensor> coinSensorsIter = coinRepo.findAll();
-                for(CoinSensor sensor: coinSensorsIter){
-                    if(sensor.getRestroom().getRestroomId().equals(rest_id)){
-                        coinSensors.add(sensor);
-                        System.out.println(sensor);
-                    }
-                }
 
-                return coinSensors;
+    public List<CoinSensor> getReadsByRestroomId(Long rest_id){
+
+        List<CoinSensor> coinSensors = new ArrayList<>();
+
+        Iterable<CoinSensor> coinSensorIterable = coinRepo.findAll();
+        for (CoinSensor coinSensor : coinSensorIterable) {
+            if(coinSensor.getRestroom().getRestroomId() == rest_id){
+                coinSensors.add(coinSensor);
             }
-            throw new Exception(" restroom with given id " + rest_id + " not found.");
-        }catch (Exception e){
-            e.printStackTrace();
         }
-        return null;
+        return coinSensors;
     }
-
-    /*
-    //method to access CoinSensor transaction by coin_read id
-    public CoinSensor getCoinSensorByReadId(Long read_id) throws Exception{
-        try{
-            logger.info("Successfully accessed coinSensor detail with coin_read_id " + read_id);
-            return coinRepo.findOne(read_id);
-        } catch(Exception e){
-            logger.error("Error retrieving the coinSensor with coin_read_id " + read_id);
-            throw e;
-        }
-    }
-
-    //access all the coinSensor details
-    public Iterable<CoinSensor> getAllCoinSensorDetails(){
-        logger.info("Returned all the coinSensor details");
-        return coinRepo.findAll();
-    }
-
-    //create coin-read
-    public CoinSensor createCoinRead(CoinSensor coinSensor){
-        
-        return coinRepo.save(coinSensor);
-    }
-
-     */
-
 
 }
