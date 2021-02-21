@@ -9,13 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/restroom/{rest_id}")
+@RequestMapping("/restroom/{rest_id}/restrooms")
 public class DoorSensorController {
 
     @Autowired
     DoorSensorService doorSensorService;
 
-    @RequestMapping(value = "/restrooms", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> createDoorRead(@PathVariable Long rest_id, @RequestBody DoorSensor doorSensor){
         return new ResponseEntity<>(doorSensorService.createDoorRead(rest_id, doorSensor), HttpStatus.CREATED);
     }
