@@ -94,7 +94,15 @@ public class Solar {
 		this.restrooms = restrooms;
 	}
 
-	
-	
 
+	@Override
+	public String toString() {
+		return "Solar{" +
+				"readId=" + readId +
+				", panelId='" + panelId + '\'' +
+				", generatedQty=" + generatedQty +
+				", message='" + message + '\'' +
+				", restrooms=" + restrooms +
+				'}';
+	}
 }

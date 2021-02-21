@@ -99,5 +99,12 @@ public class Address implements Serializable {
 		this.restrooms = restrooms;
 	}
 
-
+	@Override
+	public String toString() {
+		return 	"addressId: " + addressId +
+				", street: " + street +
+				", city: " + city +
+				", state: " + state +
+				", zipcode: " + zipcode;
+	}
 }

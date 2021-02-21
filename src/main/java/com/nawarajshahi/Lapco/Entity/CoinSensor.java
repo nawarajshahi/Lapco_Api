@@ -94,13 +94,11 @@ public class CoinSensor implements Serializable {
 
 	@Override
 	public String toString() {
-		return "CoinSensor{" +
-				"readId=" + readId +
-				", restroom=" + restroom +
-				", sensorId='" + sensorId + '\'' +
-				", readDatetime=" + readDatetime +
-				", noOfQuarters=" + noOfQuarters +
-				", message='" + message + '\'' +
-				'}';
+		return "readId: " + readId +
+				", restroomId: " + restroom.getRestroomId() +
+				", sensorId: " + sensorId +
+				", readDatetime: " + readDatetime +
+				", noOfQuarters: " + noOfQuarters +
+				", message: '" + message + '\'';
 	}
 }

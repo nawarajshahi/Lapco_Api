@@ -7,7 +7,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-import static javax.persistence.GenerationType.IDENTITY;
 
 import java.time.LocalDateTime;
 
@@ -15,8 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 
 @Entity
 @Table(name = "door_sensor", catalog = "lapco_api")
@@ -106,13 +104,11 @@ public class DoorSensor {
 
 	@Override
 	public String toString() {
-		return "DoorSensor{" +
-				"readId=" + readId +
-				", restroom=" + restroom +
-				", doorId='" + doorId + '\'' +
-				", doorOpenTime=" + doorOpenTime +
-				", doorCloseTime=" + doorCloseTime +
-				", message='" + message + '\'' +
-				'}';
+		return "readId: " + readId +
+				", restroom: " + restroom.getRestroomId() +
+				", doorId: " + doorId +
+				", doorOpenTime: " + doorOpenTime +
+				", doorCloseTime: " + doorCloseTime +
+				", message: '" + message + '\'';
 	}
 }
