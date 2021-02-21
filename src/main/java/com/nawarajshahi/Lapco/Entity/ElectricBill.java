@@ -1,12 +1,15 @@
 package com.nawarajshahi.Lapco.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.GenerationType;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,10 +22,14 @@ import javax.persistence.TemporalType;
 @Table(name = "electric_bill", catalog = "lapco_api")
 public class ElectricBill {
 
+	@JsonIgnore
 	private Long billId;
+	@JsonIgnore
 	private Restroom restroom;
 	private Date billDate;
+	@JsonIgnore
 	private Double usedQty;
+	@JsonIgnore
 	private Double totalCost;
 
 	public ElectricBill() {
@@ -40,7 +47,7 @@ public class ElectricBill {
 
 
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 
 	@Column(name = "bill_id", unique = true, nullable = false)
 	public Long getBillId() {
@@ -89,4 +96,12 @@ public class ElectricBill {
 		this.totalCost = totalCost;
 	}
 
+	@Override
+	public String toString() {
+		return "billId: " + billId +
+				", restroomId: " + restroom.getRestroomId() +
+				", billDate: " + billDate +
+				", usedQty: " + usedQty + "GL"+
+				", totalCost: $" + totalCost ;
+	}
 }

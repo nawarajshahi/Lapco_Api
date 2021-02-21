@@ -1,45 +1,49 @@
 package com.nawarajshahi.Lapco.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "address", catalog = "lapco_api")
-public class Address{
+public class Address implements Serializable {
 
 	private Long addressId;
 	private String street;
 	private String city;
 	private String state;
 	private String zipcode;
+
+	@JsonIgnore
 	private Set<Restroom> restrooms = new HashSet<Restroom>(0);
 
 	public Address() {
 	}
 
-	
-	public Address(Long addressId, String street, String city, String state, String zipcode, Set<Restroom> restrooms) {
-		super();
+	public Address(Long addressId) {
 		this.addressId = addressId;
+	}
+
+	public Address(String street, String city, String state, String zipcode) {
 		this.street = street;
 		this.city = city;
 		this.state = state;
 		this.zipcode = zipcode;
-		this.restrooms = restrooms;
 	}
 
-
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 
 	@Column(name = "address_id", unique = true, nullable = false)
 	public Long getAddressId() {
@@ -95,4 +99,12 @@ public class Address{
 		this.restrooms = restrooms;
 	}
 
+	@Override
+	public String toString() {
+		return 	"addressId: " + addressId +
+				", street: " + street +
+				", city: " + city +
+				", state: " + state +
+				", zipcode: " + zipcode;
+	}
 }

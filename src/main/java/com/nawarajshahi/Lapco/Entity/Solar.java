@@ -8,6 +8,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -43,7 +45,7 @@ public class Solar {
 
 
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "read_id", unique = true, nullable = false)
 	public Long getReadId() {
 		return this.readId;
@@ -92,7 +94,15 @@ public class Solar {
 		this.restrooms = restrooms;
 	}
 
-	
-	
 
+	@Override
+	public String toString() {
+		return "Solar{" +
+				"readId=" + readId +
+				", panelId='" + panelId + '\'' +
+				", generatedQty=" + generatedQty +
+				", message='" + message + '\'' +
+				", restrooms=" + restrooms +
+				'}';
+	}
 }

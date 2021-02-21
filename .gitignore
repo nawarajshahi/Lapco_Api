@@ -3,4 +3,7 @@
 /.settings
 /target/
 /logs/
+/.idea/
+/Lapco_api.iml
+
 

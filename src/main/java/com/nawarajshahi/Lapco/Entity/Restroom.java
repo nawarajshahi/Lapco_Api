@@ -1,25 +1,16 @@
 package com.nawarajshahi.Lapco.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "restroom", catalog = "lapco_api")
-public class Restroom {
+public class Restroom implements Serializable {
 
 	private Long restroomId;
 	private Address address;
@@ -28,22 +19,28 @@ public class Restroom {
 	private Date dateInstalled;
 	private Double totalCostOfProduction;
 	private Double totalCostOfInstallation;
+
+	@JsonIgnore
 	private Set<CoinSensor> coinSensors = new HashSet<CoinSensor>(0);
+
+	@JsonIgnore
 	private Set<ElectricBill> electricBills = new HashSet<ElectricBill>(0);
-	
+
+	@JsonIgnore
 	private Set<WaterBill> waterBills = new HashSet<WaterBill>(0);
+
+	@JsonIgnore
 	private Set<DoorSensor> doorSensors = new HashSet<DoorSensor>(0);
-	
+
+	@JsonIgnore
 	private Set<Solar> solars = new HashSet<Solar>(0);
 
 	public Restroom() {
 	}
 
-	public Restroom(Long restroomId, Address address, String serialNo, String modelNo, Date dateInstalled,
-			Double totalCostOfProduction, Double totalCostOfInstallation, Set<CoinSensor> coinSensors,
-			Set<ElectricBill> electricBills, Set<WaterBill> waterBills, Set<DoorSensor> doorSensors,
-			Set<Solar> solars) {
-		super();
+	public Restroom(Long restroomId, Address address, String serialNo, String modelNo,
+					Date dateInstalled, Double totalCostOfProduction,
+					Double totalCostOfInstallation) {
 		this.restroomId = restroomId;
 		this.address = address;
 		this.serialNo = serialNo;
@@ -51,16 +48,10 @@ public class Restroom {
 		this.dateInstalled = dateInstalled;
 		this.totalCostOfProduction = totalCostOfProduction;
 		this.totalCostOfInstallation = totalCostOfInstallation;
-		this.coinSensors = coinSensors;
-		this.electricBills = electricBills;
-		this.waterBills = waterBills;
-		this.doorSensors = doorSensors;
-		this.solars = solars;
 	}
 
-
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "restroom_id", unique = true, nullable = false)
 	public Long getRestroomId() {
 		return this.restroomId;
@@ -70,7 +61,8 @@ public class Restroom {
 		this.restroomId = restroomId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH, CascadeType.DETACH,
+			CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "address_id")
 	public Address getAddress() {
 		return this.address;
@@ -177,4 +169,14 @@ public class Restroom {
 		this.doorSensors = doorSensors;
 	}
 
+	@Override
+	public String toString() {
+		return "restroomId: " + restroomId +
+				", address: " + address.toString() +
+				", serialNo: " + serialNo +
+				", modelNo: " + modelNo +
+				", dateInstalled: " + dateInstalled +
+				", totalCostOfProduction: $" + totalCostOfProduction +
+				", totalCostOfInstallation: $" + totalCostOfInstallation;
+	}
 }
