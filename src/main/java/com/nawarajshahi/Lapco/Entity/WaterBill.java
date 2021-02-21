@@ -96,4 +96,12 @@ public class WaterBill {
 		this.totalCost = totalCost;
 	}
 
+	@Override
+	public String toString() {
+		return "billId: " + billId +
+				", restroomId: " + restroom.getRestroomId() +
+				", billDate: " + billDate +
+				", usedQty: " + Math.round(usedQty*100.00)/100.0 + "GL" +
+				", totalCost: $" + Math.round(totalCost*100.0)/100.0;
+	}
 }
