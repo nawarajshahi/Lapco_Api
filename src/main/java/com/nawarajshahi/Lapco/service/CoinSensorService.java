@@ -38,20 +38,22 @@ public class CoinSensorService implements Serializable {
             if(restroom !=null){
                 logger.info("Restroom exists, returning coin read details with restroom Id: " + rest_id);
 
-
                 Iterable<CoinSensor> coinSensorIterable = coinRepo.findAll();
                 for (CoinSensor coinSensor : coinSensorIterable) {
                     if(coinSensor.getRestroom().getRestroomId() == rest_id){
                         coinSensors.add(coinSensor);
                     }
                 }
-                logger.info("Returning all coin read details with restroom id: " + rest_id);
+                logger.info("Added all coin read details with restroom id: " + rest_id);
+            }else{
+                logger.error("Restroom doesn't exist, please ensure details are correct. Returning null");
             }
-            logger.error("Restroom doesn't exist, please ensure details are correct. Returning null");
+
         }catch (Exception e){
             logger.error("Error occurred while reading coin read details.");
             throw e;
         }
+        logger.info("Returning all coin read details with restroom id: " + rest_id);
         return coinSensors;
     }
 
