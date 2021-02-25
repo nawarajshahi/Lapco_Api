@@ -26,14 +26,18 @@ public class CoinSensorService implements Serializable {
     @Autowired
     private RestroomRepository restRepo;
 
+    @Autowired
+    private RestroomService restroomService;
+
     //get all coin read details by restroom_id
-    public List<CoinSensor> getReadsByRestroomId(Long rest_id) {
+    public List<CoinSensor> getReadsByRestroomId(Long rest_id) throws Exception {
         //get the restroom with given rest_id first
-        Restroom restroom = restRepo.findOne(rest_id);
+        List<CoinSensor> coinSensors = new ArrayList<>();
         try{
+            Restroom restroom = restroomService.getRestroomDetailById(rest_id);
             if(restroom !=null){
                 logger.info("Restroom exists, returning coin read details with restroom Id: " + rest_id);
-                List<CoinSensor> coinSensors = new ArrayList<>();
+
 
                 Iterable<CoinSensor> coinSensorIterable = coinRepo.findAll();
                 for (CoinSensor coinSensor : coinSensorIterable) {
@@ -42,14 +46,13 @@ public class CoinSensorService implements Serializable {
                     }
                 }
                 logger.info("Returning all coin read details with restroom id: " + rest_id);
-                return coinSensors;
             }
             logger.error("Restroom doesn't exist, please ensure details are correct. Returning null");
-            return null;
         }catch (Exception e){
             logger.error("Error occurred while reading coin read details.");
             throw e;
         }
+        return coinSensors;
     }
 
 
