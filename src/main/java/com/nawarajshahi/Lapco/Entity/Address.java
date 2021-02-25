@@ -19,6 +19,7 @@ import javax.persistence.Table;
 @Table(name = "address", catalog = "lapco_api")
 public class Address implements Serializable {
 
+	@JsonIgnore
 	private Long addressId;
 	private String street;
 	private String city;
