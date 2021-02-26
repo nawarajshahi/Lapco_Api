@@ -29,20 +29,6 @@ public class Address implements Serializable {
 	@JsonIgnore
 	private Set<Restroom> restrooms = new HashSet<Restroom>(0);
 
-	public Address() {
-	}
-
-	public Address(Long addressId) {
-		this.addressId = addressId;
-	}
-
-	public Address(String street, String city, String state, String zipcode) {
-		this.street = street;
-		this.city = city;
-		this.state = state;
-		this.zipcode = zipcode;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 

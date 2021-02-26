@@ -47,7 +47,6 @@ public class CoinSensor implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-
 	@Column(name = "read_id", unique = true, nullable = false)
 	public Integer getReadId() {
 		return this.readId;

@@ -31,19 +31,6 @@ public class Solar {
 	@JsonIgnore
 	private Set<Restroom> restrooms = new HashSet<Restroom>(0);
 
-	public Solar() {
-	}
-
-	public Solar(Long readId, String panelId, Double generatedQty, String message, Set<Restroom> restrooms) {
-		super();
-		this.readId = readId;
-		this.panelId = panelId;
-		this.generatedQty = generatedQty;
-		this.message = message;
-		this.restrooms = restrooms;
-	}
-
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "read_id", unique = true, nullable = false)
@@ -84,7 +71,7 @@ public class Solar {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "solar_restroom", 
-			joinColumns = @JoinColumn(name = "read_id", referencedColumnName = "read_id"), 
+			joinColumns = @JoinColumn(name = "solar_read_id", referencedColumnName = "read_id"),
 			inverseJoinColumns = @JoinColumn(name = "restroom_id", referencedColumnName = "restroom_id"))
 	public Set<Restroom> getRestrooms() {
 		return restrooms;

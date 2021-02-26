@@ -34,21 +34,6 @@ public class DoorSensor {
 	@JsonIgnore
 	private String message;
 
-	public DoorSensor() {
-	}
-
-	public DoorSensor(Long readId, Restroom restroom, String doorId, LocalDateTime doorOpenTime, 
-			LocalDateTime doorCloseTime, String message) {
-		super();
-		this.readId = readId;
-		this.restroom = restroom;
-		this.doorId = doorId;
-		this.doorOpenTime = doorOpenTime;
-		this.doorCloseTime = doorCloseTime;
-		this.message = message;
-	}
-
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "read_id", unique = true, nullable = false)
