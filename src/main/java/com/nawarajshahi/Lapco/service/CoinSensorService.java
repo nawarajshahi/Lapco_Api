@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +25,34 @@ public class CoinSensorService implements Serializable {
     private CoinSensorRepository coinRepo;
 
     @Autowired
-    private RestroomRepository restRepo;
-
-    @Autowired
     private RestroomService restroomService;
+
+    //create coin read
+    public CoinSensor createCoinRead(Long restroom_id, CoinSensor coinsensor) throws Exception {
+        try{
+            Restroom restroom = restroomService.getRestroomDetailById(restroom_id);
+            if(restroom !=null){
+                logger.info("Restroom exists, adding coin read details.");
+                coinsensor.setRestroom(restroom);
+                coinsensor.setSensorId(coinsensor.getSensorId());
+                coinsensor.setNoOfQuarters(1);
+                coinsensor.setReadDatetime(LocalDateTime.now());
+                coinsensor.setMessage("Accepted.");
+                coinRepo.save(coinsensor);
+
+                logger.info("Added coin read details and returning the coin sensor");
+                return coinsensor;
+
+            }else{
+                logger.error("Restroom doesn't exist, returning null.");
+                return null;
+            }
+        }catch (Exception e){
+            logger.error("Error occurred creating coin read.");
+            throw e;
+        }
+    }
+
 
     //get all coin read details by restroom_id
     public List<CoinSensor> getReadsByRestroomId(Long rest_id) throws Exception {
@@ -56,6 +81,7 @@ public class CoinSensorService implements Serializable {
         logger.info("Returning all coin read details with restroom id: " + rest_id);
         return coinSensors;
     }
+
 
 
 }

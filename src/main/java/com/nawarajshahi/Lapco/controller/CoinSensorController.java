@@ -19,10 +19,14 @@ public class CoinSensorController {
     private CoinSensorService coinService;
 
     //create new coin reads for given rest_id
-//    @RequestMapping(method = RequestMethod.POST)
-//    public ResponseEntity<Object> createCoinRead(@RequestBody CoinSensor coinSensor){
-//        return new ResponseEntity<>(coinService.createCoinRead(coinSensor), HttpStatus.CREATED);
-//    }
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> createCoinRead(@PathVariable("rest_id") Long rest_id, @RequestBody CoinSensor coinSensor){
+       try{
+           return new ResponseEntity<>(coinService.createCoinRead(rest_id, coinSensor), HttpStatus.CREATED);
+       } catch (Exception e) {
+           return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
+       }
+    }
 
     //get all coin reads for given rest_id
     @RequestMapping(method = RequestMethod.GET)
