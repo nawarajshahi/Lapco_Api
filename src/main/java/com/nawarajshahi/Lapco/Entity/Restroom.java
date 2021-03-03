@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Table(name = "restroom", catalog = "lapco_api")
 public class Restroom implements Serializable {
 
+	@JsonIgnore
 	private Long restroomId;
 	private Address address;
 	private String serialNo;
@@ -35,20 +36,6 @@ public class Restroom implements Serializable {
 	@JsonIgnore
 	private Set<Solar> solars = new HashSet<Solar>(0);
 
-	public Restroom() {
-	}
-
-	public Restroom(Long restroomId, Address address, String serialNo, String modelNo,
-					Date dateInstalled, Double totalCostOfProduction,
-					Double totalCostOfInstallation) {
-		this.restroomId = restroomId;
-		this.address = address;
-		this.serialNo = serialNo;
-		this.modelNo = modelNo;
-		this.dateInstalled = dateInstalled;
-		this.totalCostOfProduction = totalCostOfProduction;
-		this.totalCostOfInstallation = totalCostOfInstallation;
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

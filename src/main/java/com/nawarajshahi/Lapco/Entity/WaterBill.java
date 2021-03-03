@@ -32,20 +32,6 @@ public class WaterBill {
 	@JsonIgnore
 	private Double totalCost;
 
-	public WaterBill() {
-	}
-
-	
-	public WaterBill(Long billId, Restroom restroom, Date billDate, Double usedQty, Double totalCost) {
-		super();
-		this.billId = billId;
-		this.restroom = restroom;
-		this.billDate = billDate;
-		this.usedQty = usedQty;
-		this.totalCost = totalCost;
-	}
-
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 

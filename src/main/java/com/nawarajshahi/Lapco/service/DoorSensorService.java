@@ -16,7 +16,7 @@ import java.util.List;
 
 @Service
 public class DoorSensorService {
-    private static final Logger logger = LogManager.getLogger(AddressService.class);
+    private static final Logger logger = LogManager.getLogger(DoorSensorService.class);
 
     @Autowired private DoorSensorRepository doorRepo;
 

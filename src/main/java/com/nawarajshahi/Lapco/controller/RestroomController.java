@@ -26,6 +26,8 @@ public class RestroomController {
         }
     }
 
+
+
     //get restroom details for all the restroom units
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<Object> getAllRestroom() throws Exception{

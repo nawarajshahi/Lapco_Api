@@ -2,46 +2,57 @@ package com.nawarajshahi.Lapco.Entity;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "coin_sensor", catalog = "lapco_api")
-public class CoinSensor implements Serializable {
+public class CoinSensor implements java.io.Serializable {
 
-	private Long readId;
+	/**
+	 * serialVersionUID = 8136635256361091471L
+	 */
+	private static final long serialVersionUID = 8136635256361091471L;
+
+	@JsonIgnore
+	private Integer readId;
+
+	@JsonIgnore
 	private Restroom restroom;
+
 	private String sensorId;
+
+	@JsonIgnore
 	private LocalDateTime readDatetime;
+
+	@JsonIgnore
 	private Integer noOfQuarters;
+
+	@JsonIgnore
 	private String message;
 
 	public CoinSensor() {
 	}
 
-	public CoinSensor(String sensorId, String message) {
-		this.sensorId = sensorId;
-		this.message = message;
-	}
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "read_id", unique = true, nullable = false)
-	public Long getReadId() {
+	public Integer getReadId() {
 		return this.readId;
 	}
 
-	public void setReadId(Long readId) {
+	public void setReadId(Integer readId) {
 		this.readId = readId;
 	}
 
@@ -65,7 +76,7 @@ public class CoinSensor implements Serializable {
 	}
 
 
-	@Column(name = "read_datetime", length = 19)
+	@Column(name = "read_datetime")
 	public LocalDateTime getReadDatetime() {
 		return this.readDatetime;
 	}
@@ -94,11 +105,13 @@ public class CoinSensor implements Serializable {
 
 	@Override
 	public String toString() {
-		return "readId: " + readId +
-				", restroomId: " + restroom.getRestroomId() +
-				", sensorId: " + sensorId +
-				", readDatetime: " + readDatetime +
-				", noOfQuarters: " + noOfQuarters +
-				", message: '" + message + '\'';
+		return "CoinSensor{" +
+				"readId=" + readId +
+				", restroomId=" + restroom.getRestroomId() +
+				", sensorId='" + sensorId + '\'' +
+				", readDatetime=" + readDatetime +
+				", noOfQuarters=" + noOfQuarters +
+				", message='" + message + '\'' +
+				'}';
 	}
 }
