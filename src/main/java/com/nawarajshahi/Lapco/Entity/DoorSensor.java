@@ -19,7 +19,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "door_sensor", catalog = "lapco_api")
+@Table
 public class DoorSensor {
 
 	@JsonIgnore
