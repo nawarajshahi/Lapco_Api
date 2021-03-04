@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "coin_sensor", catalog = "lapco_api")
+@Table
 public class CoinSensor implements java.io.Serializable {
 
 	/**

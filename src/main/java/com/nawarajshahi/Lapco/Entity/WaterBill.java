@@ -19,7 +19,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "water_bill", catalog = "lapco_api")
+@Table
 public class WaterBill {
 
 	@JsonIgnore

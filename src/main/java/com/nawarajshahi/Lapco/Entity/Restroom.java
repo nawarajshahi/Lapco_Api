@@ -9,7 +9,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "restroom", catalog = "lapco_api")
+@Table
 public class Restroom implements Serializable {
 
 	@JsonIgnore

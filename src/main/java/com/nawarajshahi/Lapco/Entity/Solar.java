@@ -20,7 +20,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "solar", catalog = "lapco_api")
+@Table
 public class Solar {
 
 	private Long readId;
