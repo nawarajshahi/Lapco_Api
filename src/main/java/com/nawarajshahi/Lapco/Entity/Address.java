@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "address", catalog = "lapco_api")
+@Table
 public class Address implements Serializable {
 
 	@JsonIgnore

@@ -9,8 +9,11 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.Random;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 
 @Service
 public class SolarService {
@@ -23,24 +26,44 @@ public class SolarService {
     private RestroomRepository restRepo;
 
     //create solar read by restroom_id
-    public Solar createSolarRead(Long rest_id, Solar solar) throws Exception {
-        //check to see if restroom exists
-        Restroom restroom = restRepo.findOne(rest_id);
-        try{
-            if(restroom != null){
-                logger.info("Restroom exists, and setting restroom details to the solar sensor.");
-                double lowerLimit = 20;
-                double upperLimit = 200D;
-                double quantity = lowerLimit + new Random().nextDouble() * (upperLimit - lowerLimit);
-                solar.setGeneratedQty(quantity);
-                solar.setMessage("panel active.");
-                return solarRepo.save(solar);
-            }
-            logger.error("restroom does not exist, returning null");
-            throw new Exception("Restroom doesn't exist, returning null.");
-        }catch(Exception e){
-            logger.error("Error creating solar read");
-            throw e;
+    public Solar createSolarRead(Solar solar, Long[] restroomIds) throws Exception {
+        Solar newSolar = new Solar();
+
+        //set solar read info to the solar entity
+        newSolar.setPanelId(solar.getPanelId());
+        newSolar.setGeneratedQty(solar.getGeneratedQty());
+        newSolar.setMessage(solar.getMessage());
+
+        //retrieve all restrooms with given restroom Ids
+        Iterable<Restroom> restroomIterable = restRepo.findAll(Arrays.asList(restroomIds));
+        Set<Restroom> restrooms = new HashSet<>();
+
+        //set solar read details for each restrooms retrieved above
+        for(Restroom restroom: restroomIterable){
+            restroom.getSolars().add(newSolar);
+            restrooms.add(restroom);
         }
+
+        //add all restrooms info to the given solar read
+        newSolar.getRestrooms().addAll(restrooms);
+        return solarRepo.save(newSolar);
     }
+
+    //get solar read
+    public Solar getSolarReadById(Long solar_read_id){
+        return solarRepo.findOne(solar_read_id);
+    }
+
+    //get all solar reads
+    public Iterable<Solar> getAllSolarReads(){
+        return solarRepo.findAll();
+    }
+
+    //get restrooms that are coverd by given read_id
+    public Set<Restroom> restroomsCoveredBySolarReadId(Long solar_read_id){
+        Solar solar = solarRepo.findOne(solar_read_id);
+        return solar.getRestrooms();
+    }
+
+
 }
