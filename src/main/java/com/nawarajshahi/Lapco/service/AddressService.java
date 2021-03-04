@@ -49,10 +49,10 @@ public class AddressService implements Serializable
 	public Address updateAddresss(Address address, Long address_id) throws Exception{
 		try{
 			Address oldAddress = repo.findOne(address_id);
-			oldAddress.setStreet(address.getStreet());
-			oldAddress.setCity(address.getCity());
-			oldAddress.setState(address.getState());
-			oldAddress.setZipcode(address.getZipcode());
+			if(address.getStreet() !=null) oldAddress.setStreet(address.getStreet());
+			if(address.getCity() !=null) oldAddress.setCity(address.getCity());
+			if(address.getState() !=null) oldAddress.setState(address.getState());
+			if(address.getZipcode() !=null) oldAddress.setZipcode(address.getZipcode());
 			logger.info("Successfully updated the address with id " + address_id);
 			return repo.save(oldAddress);
 		}catch(Exception e){
