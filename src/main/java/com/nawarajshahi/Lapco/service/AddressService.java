@@ -61,6 +61,15 @@ public class AddressService implements Serializable
 		}
 	}
 
+	//delete address by id
+	public void deleteAddress(Long address_id){
+		try{
+			repo.delete(address_id);
+		}catch (Exception e ){
+			e.printStackTrace();
+		}
+	}
+
 	//private method to check if address exists in the database
 	private boolean doesAddressExist(Address newAddress){
 		Iterable<Address> addresses = repo.findAll();
@@ -78,6 +87,7 @@ public class AddressService implements Serializable
 		}
 		return false;
 	}
+
 
 }
 

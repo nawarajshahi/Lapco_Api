@@ -87,7 +87,7 @@ public class ElectricBill {
 		return "billId: " + billId +
 				", restroomId: " + restroom.getRestroomId() +
 				", billDate: " + billDate +
-				", usedQty: " + usedQty + "GL"+
+				", usedQty: " + usedQty + "kWh"+
 				", totalCost: $" + totalCost ;
 	}
 }
