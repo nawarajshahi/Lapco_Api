@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table
 public class Solar {
 
+	@JsonIgnore
 	private Long readId;
 	private String panelId;
 	private Double generatedQty;
@@ -87,7 +88,7 @@ public class Solar {
 		return "Solar{" +
 				"readId=" + readId +
 				", panelId='" + panelId + '\'' +
-				", generatedQty=" + generatedQty +
+				", generatedQty= " + generatedQty + " kWh" +
 				", message='" + message + '\'' +
 				", restrooms=" + restrooms +
 				'}';
