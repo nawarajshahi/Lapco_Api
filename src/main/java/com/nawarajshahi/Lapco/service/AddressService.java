@@ -83,7 +83,7 @@ public class AddressService implements Serializable
 				existingAddressId = address.getAddressId();
 				return true;
 			}
-			return false;
+
 		}
 		return false;
 	}

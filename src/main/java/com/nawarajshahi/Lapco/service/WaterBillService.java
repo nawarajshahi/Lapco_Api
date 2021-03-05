@@ -80,5 +80,14 @@ public class WaterBillService {
         }
     }
 
+    public void deleteWaterBillById(Long bill_id){
+       try{
+
+           waterRepo.delete(bill_id);
+       }catch (Exception e){
+           e.printStackTrace();
+       }
+    }
+
 
 }

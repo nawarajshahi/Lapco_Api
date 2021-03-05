@@ -50,7 +50,8 @@ public class RestroomService implements Serializable {
         try{
             Restroom oldRestroom = repo.findOne(restroom_id);
             if(restroom.getAddress()!=null) {
-                oldRestroom.setAddress(restroom.getAddress());
+                oldRestroom.setAddress(addressService.updateAddresss(restroom.getAddress(),
+                        restroom.getAddress().getAddressId()));
             }
 
             if(restroom.getSerialNo() !=null) oldRestroom.setSerialNo(restroom.getSerialNo());
