@@ -48,8 +48,7 @@ public class Restroom implements Serializable {
 		this.restroomId = restroomId;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH, CascadeType.DETACH,
-			CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "address_id")
 	public Address getAddress() {
 		return this.address;

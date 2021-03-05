@@ -60,6 +60,9 @@ public class RestroomController {
         }
     }
 
+    /**
+     * Delete Restroom is deactivated for now
+
     //delete restroom by restroom_id
     @RequestMapping(value = "/{rest_id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> deleteRestroomById(@PathVariable Long rest_id){
@@ -70,6 +73,7 @@ public class RestroomController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+    */
 }
 
 

@@ -7,8 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping(value = "/addresses")
+/**
+ * currently AddressController is deactivated intentionally
+ */
+//@RestController
+//@RequestMapping(value = "/addresses")
 public class AddressController {
 
     @Autowired
@@ -36,3 +39,4 @@ public class AddressController {
     }
 
 }
+
