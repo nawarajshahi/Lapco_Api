@@ -28,19 +28,4 @@ public class CoinSensorController {
        }
     }
 
-    //get all coin reads for given rest_id
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> getCoinSensorDetailsByRestroomId(@PathVariable Long rest_id){
-        try{
-            List<CoinSensor> coinSensors = coinService.getReadsByRestroomId(rest_id);
-            List<String> coinSensorsToString = new ArrayList<>();
-            for (CoinSensor coinSensor:coinSensors) {
-                coinSensorsToString.add(coinSensor.toString());
-            }
-            return new ResponseEntity<>(coinSensorsToString, HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-        }
-    }
-
 }

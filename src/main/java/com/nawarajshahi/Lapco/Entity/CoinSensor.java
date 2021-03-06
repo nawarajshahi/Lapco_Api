@@ -21,25 +21,27 @@ import javax.persistence.Table;
 public class CoinSensor implements java.io.Serializable {
 
 	/**
-	 * serialVersionUID = 8136635256361091471L
+	 * 
 	 */
-	private static final long serialVersionUID = 8136635256361091471L;
+	private static final long serialVersionUID = -7239513375455419637L;
 
-	@JsonIgnore
+	
+
+
 	private Integer readId;
 
-	@JsonIgnore
+
 	private Restroom restroom;
 
 	private String sensorId;
 
-	@JsonIgnore
+
 	private LocalDateTime readDatetime;
 
-	@JsonIgnore
+
 	private Integer noOfQuarters;
 
-	@JsonIgnore
+
 	private String message;
 
 	public CoinSensor() {
