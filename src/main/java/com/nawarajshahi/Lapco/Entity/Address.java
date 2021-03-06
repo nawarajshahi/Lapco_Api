@@ -12,14 +12,14 @@ import javax.persistence.*;
 @Table
 public class Address implements Serializable {
 
-	@JsonIgnore
+
 	private Long addressId;
 	private String street;
 	private String city;
 	private String state;
 	private String zipcode;
 
-	@JsonIgnore
+
 	private Set<Restroom> restrooms = new HashSet<Restroom>(0);
 
 	@Id

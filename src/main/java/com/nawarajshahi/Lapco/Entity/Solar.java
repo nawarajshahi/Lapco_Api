@@ -23,13 +23,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table
 public class Solar {
 
-	@JsonIgnore
+
 	private Long readId;
 	private String panelId;
 	private Double generatedQty;
 	private String message;
 	
-	@JsonIgnore
+
 	private Set<Restroom> restrooms = new HashSet<Restroom>(0);
 
 	@Id

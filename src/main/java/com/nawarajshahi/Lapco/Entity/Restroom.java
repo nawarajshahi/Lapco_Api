@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Table
 public class Restroom implements Serializable {
 
-	@JsonIgnore
+
 	private Long restroomId;
 	private Address address;
 	private String serialNo;
