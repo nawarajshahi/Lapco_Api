@@ -18,7 +18,12 @@ import java.util.List;
 @Service
 public class CoinSensorService implements Serializable {
 
-    private static final Logger logger = LogManager.getLogger(CoinSensorService.class);
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1323736227411672696L;
+
+	private static final Logger logger = LogManager.getLogger(CoinSensorService.class);
 
     //access CoinSensorRepository to perform CRUD operations on CoinSensor
     @Autowired
@@ -54,33 +59,6 @@ public class CoinSensorService implements Serializable {
     }
 
 
-    //get all coin read details by restroom_id
-    public List<CoinSensor> getReadsByRestroomId(Long rest_id) throws Exception {
-        //get the restroom with given rest_id first
-        List<CoinSensor> coinSensors = new ArrayList<>();
-        try{
-            Restroom restroom = restroomService.getRestroomDetailById(rest_id);
-            if(restroom !=null){
-                logger.info("Restroom exists, returning coin read details with restroom Id: " + rest_id);
-
-                Iterable<CoinSensor> coinSensorIterable = coinRepo.findAll();
-                for (CoinSensor coinSensor : coinSensorIterable) {
-                    if(coinSensor.getRestroom().getRestroomId() == rest_id){
-                        coinSensors.add(coinSensor);
-                    }
-                }
-                logger.info("Added all coin read details with restroom id: " + rest_id);
-            }else{
-                logger.error("Restroom doesn't exist, please ensure details are correct. Returning null");
-            }
-
-        }catch (Exception e){
-            logger.error("Error occurred while reading coin read details.");
-            throw e;
-        }
-        logger.info("Returning all coin read details with restroom id: " + rest_id);
-        return coinSensors;
-    }
 
 
 

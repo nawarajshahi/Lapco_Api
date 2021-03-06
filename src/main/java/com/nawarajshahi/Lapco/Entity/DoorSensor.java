@@ -22,16 +22,16 @@ import javax.persistence.Table;
 @Table
 public class DoorSensor {
 
-	@JsonIgnore
+
 	private Long readId;
 	@JsonIgnore
 	private Restroom restroom;
 	private String doorId;
-	@JsonIgnore
+
 	private LocalDateTime doorOpenTime;
-	@JsonIgnore
+
 	private LocalDateTime doorCloseTime;
-	@JsonIgnore
+
 	private String message;
 
 	@Id
