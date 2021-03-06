@@ -22,14 +22,14 @@ import javax.persistence.TemporalType;
 @Table
 public class ElectricBill {
 
-	@JsonIgnore
+
 	private Long billId;
-	@JsonIgnore
+
 	private Restroom restroom;
 	private Date billDate;
-	@JsonIgnore
+
 	private Double usedQty;
-	@JsonIgnore
+
 	private Double totalCost;
 
 	@Id
@@ -87,7 +87,7 @@ public class ElectricBill {
 		return "billId: " + billId +
 				", restroomId: " + restroom.getRestroomId() +
 				", billDate: " + billDate +
-				", usedQty: " + usedQty + "GL"+
+				", usedQty: " + usedQty + "kWh"+
 				", totalCost: $" + totalCost ;
 	}
 }

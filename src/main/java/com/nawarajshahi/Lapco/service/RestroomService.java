@@ -49,12 +49,16 @@ public class RestroomService implements Serializable {
     public Restroom updateRestroom(Restroom restroom, Long restroom_id) throws Exception{
         try{
             Restroom oldRestroom = repo.findOne(restroom_id);
-            oldRestroom.setAddress(restroom.getAddress());
-            oldRestroom.setSerialNo(restroom.getSerialNo());
-            oldRestroom.setModelNo(restroom.getModelNo());
-            oldRestroom.setDateInstalled(restroom.getDateInstalled());
-            oldRestroom.setTotalCostOfProduction(restroom.getTotalCostOfProduction());
-            oldRestroom.setTotalCostOfInstallation(restroom.getTotalCostOfInstallation());
+            if(restroom.getAddress()!=null) {
+                oldRestroom.setAddress(addressService.updateAddresss(restroom.getAddress(),
+                        restroom.getAddress().getAddressId()));
+            }
+
+            if(restroom.getSerialNo() !=null) oldRestroom.setSerialNo(restroom.getSerialNo());
+            if(restroom.getModelNo()!=null) oldRestroom.setModelNo(restroom.getModelNo());
+            if(restroom.getDateInstalled()!=null) oldRestroom.setDateInstalled(restroom.getDateInstalled());
+            if(restroom.getTotalCostOfProduction()!=null) oldRestroom.setTotalCostOfProduction(restroom.getTotalCostOfProduction());
+            if(restroom.getTotalCostOfInstallation()!=null) oldRestroom.setTotalCostOfInstallation(restroom.getTotalCostOfInstallation());
             logger.info("Successfully updated the restroom details. ");
             return repo.save(oldRestroom);
         }catch (Exception e){

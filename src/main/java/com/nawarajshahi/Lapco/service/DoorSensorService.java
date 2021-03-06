@@ -44,30 +44,5 @@ public class DoorSensorService {
         }
     }
 
-    //read all the door sensor data for given restroom_id
-    public List<DoorSensor> getDoorReadsByRestroomId(Long rest_id){
-        //first obtain the restroom with given rest_id
-        Restroom restroom = restRepo.findOne(rest_id);
-        try{
-            if(restroom !=null){
-                logger.info("Restroom exits, returning door read details with restroom id: " + rest_id);
-                List<DoorSensor> doorSensors = new ArrayList<>();
-
-                Iterable<DoorSensor> doorSensorIterable = doorRepo.findAll();
-                for(DoorSensor sensor: doorSensorIterable){
-                    if(sensor.getRestroom().getRestroomId()== restroom.getRestroomId()){
-                        doorSensors.add(sensor); //add only if restroom_id matches
-                    }
-                }
-                logger.info("Successfully retrieved door read details with restroom id: " + rest_id);
-                return doorSensors;
-            }
-            logger.error("Restroom doesn't exist, returning null");
-            return null;
-        }catch (Exception e){
-            logger.error("Error retrieving door read details, please make sure details are correct.");
-            throw e;
-        }
-    }
 
 }
